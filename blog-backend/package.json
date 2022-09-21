@@ -1,0 +1,31 @@
+{
+  "name": "blog-backend",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "eslint-config-prettier": "^8.5.0",
+    "esm": "^3.2.25",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^11.0.1",
+    "koa-static": "^5.0.0",
+    "mongoose": "^6.4.4",
+    "sanitize-html": "^2.7.0",
+    "serverless": "^3.21.0",
+    "serverless-http": "^3.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "nodemon": "^2.0.19"
+  },
+  "scripts": {
+    "start": "node src -r esm src",
+    "backend": "nodemon server/index.js",
+    "start:dev": "nodemon --watch src/ -r esm src/index.js"
+  }
+}
