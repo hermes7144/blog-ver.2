@@ -32,7 +32,7 @@ const Spacer = styled.div`
 
 const UserInfo = styled.div`
   font-weight: 800;
-  margin-right: 1rem;
+  margin: 1rem;
 `;
 
 const Header = ({ user, onLogout }) => {
@@ -47,6 +47,7 @@ const Header = ({ user, onLogout }) => {
           <Link to="/">FAQ</Link>
           {user ? (
             <div className="right">
+              <Link to="/control">설정</Link>
               <UserInfo>{user.username}</UserInfo>
               <Button onClick={onLogout}>로그아웃</Button>
             </div>

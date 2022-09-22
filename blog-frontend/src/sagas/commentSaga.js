@@ -1,7 +1,5 @@
 import { all, call, fork, put, select, take } from 'redux-saga/effects';
 import { commentActions } from '../slices/commentSlice';
-import qs from 'query-string';
-import client from '../lib/api/client';
 import * as commentAPI from '../lib/api/comment';
 
 // api 서버 연결 후 action 호출
@@ -62,6 +60,7 @@ function* watchGetCommentList() {
 function* watchInsertComment() {
   while (true) {
     const action = yield take(commentActions.insertComment);
+
     yield call(asyncInsertComment, action);
   }
 }

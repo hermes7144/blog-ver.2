@@ -6,8 +6,12 @@ import user, { userSaga } from './user';
 import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
 import posts, { postsSaga } from './posts';
-import { commentReducer } from '../slices/commentSlice';
+import { comment } from '../slices/commentSlice';
+import { board } from '../slices/boardSlice';
+import { code } from '../slices/codeSlice';
 import commentSaga from '../sagas/commentSaga';
+import boardSaga from '../sagas/boardSaga';
+import codeSaga from '../sagas/codeSaga';
 
 const rootReducer = combineReducers({
   auth,
@@ -16,7 +20,9 @@ const rootReducer = combineReducers({
   write,
   post,
   posts,
-  commentReducer,
+  comment,
+  board,
+  code,
 });
 
 export function* rootSaga() {
@@ -27,6 +33,8 @@ export function* rootSaga() {
     postSaga(),
     postsSaga(),
     commentSaga(),
+    boardSaga(),
+    codeSaga(),
   ]);
 }
 

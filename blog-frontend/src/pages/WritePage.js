@@ -3,6 +3,8 @@ import Responsive from '../components/common/Responsive';
 import EditorContainer from '../containers/write/EditorContainer';
 import TagBoxContainer from '../containers/write/TagBoxContainer';
 import WriteActionButtonsContainer from '../containers/write/WriteActionButtonsContainer';
+import SelectBox from '../components/common/SelectBox';
+
 import { Helmet } from 'react-helmet-async';
 
 const WritePage = () => {
@@ -11,8 +13,9 @@ const WritePage = () => {
       <Helmet>
         <title>글 작성하기 - REACTERS</title>
       </Helmet>
-
       <EditorContainer />
+      <SelectBox />
+
       <TagBoxContainer />
       <WriteActionButtonsContainer />
     </Responsive>
