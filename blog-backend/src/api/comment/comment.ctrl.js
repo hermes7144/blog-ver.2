@@ -45,6 +45,7 @@ export const remove = async (ctx) => {
   const { id } = ctx.params;
   try {
     await Comment.findByIdAndRemove(id).exec();
+    ctx.status = 204; // No Content
   } catch (e) {
     ctx.throw(500, e);
   }

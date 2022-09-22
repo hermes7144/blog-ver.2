@@ -103,31 +103,29 @@ function Comments(props) {
         {status === 200 ? (
           commentList.length > 0 ? (
             commentList.map((comment, index) => (
-              <>
-                <Comment key={comment?._id ?? index}>
-                  <hr />
-                  <div>
-                    <span>{comment.user.username}</span>&nbsp;
-                    <span>
-                      {new Date(comment?.createdAt).toLocaleString() ?? ''}
-                    </span>
-                  </div>
-                  <div>
-                    <span>{comment?.content ?? ''}</span>
-                    {user && user._id === comment.user._id ? (
-                      <ActionButton
-                        onClick={() =>
-                          onClickDeleteCommentButton(comment?._id ?? 0)
-                        }
-                      >
-                        삭제
-                      </ActionButton>
-                    ) : (
-                      ''
-                    )}
-                  </div>
-                </Comment>
-              </>
+              <Comment key={comment?._id ?? index}>
+                <hr />
+                <div>
+                  <span>{comment.user.username}</span>&nbsp;
+                  <span>
+                    {new Date(comment?.createdAt).toLocaleString() ?? ''}
+                  </span>
+                </div>
+                <div>
+                  <span>{comment?.content ?? ''}</span>
+                  {user && user._id === comment.user._id ? (
+                    <ActionButton
+                      onClick={() =>
+                        onClickDeleteCommentButton(comment?._id ?? 0)
+                      }
+                    >
+                      삭제
+                    </ActionButton>
+                  ) : (
+                    ''
+                  )}
+                </div>
+              </Comment>
             ))
           ) : (
             <div></div>

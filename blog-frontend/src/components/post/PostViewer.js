@@ -41,7 +41,6 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
   }
 
   const { _id, title, body, user, publishedDate, tags } = post;
-  console.log(post);
   return (
     <PostViewerBlock>
       <Helmet>
