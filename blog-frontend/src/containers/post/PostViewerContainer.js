@@ -50,6 +50,7 @@ const PostViewerContainer = () => {
       post={post}
       loading={loading}
       error={error}
+      user={user}
       actionButtons={
         ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />
       }

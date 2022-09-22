@@ -6,7 +6,6 @@ import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
 import { Helmet } from 'react-helmet-async';
 import Comment from '../common/Comments';
-import { useParams } from 'react-router';
 
 const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
@@ -27,9 +26,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-const PostViewer = ({ post, error, loading, actionButtons, ownPost }) => {
-  const params = useParams();
-
+const PostViewer = ({ post, error, loading, actionButtons }) => {
   // 에러 발생 시
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -43,11 +40,12 @@ const PostViewer = ({ post, error, loading, actionButtons, ownPost }) => {
     return null;
   }
 
-  const { title, body, user, publishedDate, tags } = post;
+  const { _id, title, body, user, publishedDate, tags } = post;
+  console.log(post);
   return (
     <PostViewerBlock>
       <Helmet>
-        <title>{title} - MUKDA</title>
+        <title>{title} - REACTER</title>
       </Helmet>
 
       <PostHead>
@@ -62,7 +60,7 @@ const PostViewer = ({ post, error, loading, actionButtons, ownPost }) => {
       {actionButtons}
       <PostContent dangerouslySetInnerHTML={{ __html: body }} />
       <div>
-        <Comment postId={params?.postId ?? 0} />
+        <Comment postId={_id} />
       </div>
     </PostViewerBlock>
   );

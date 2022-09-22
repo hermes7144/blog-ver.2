@@ -41,10 +41,9 @@ const Header = ({ user, onLogout }) => {
       <HeaderBlock>
         <Wrapper>
           <Link to="/" className="logo">
-            MUKDA
+            REACTER
           </Link>
           <Link to="/">HOME</Link>
-          <Link to="/post">POST</Link>
           <Link to="/">FAQ</Link>
           {user ? (
             <div className="right">

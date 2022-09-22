@@ -1,5 +1,8 @@
 import Comment from '../../models/Comment';
 
+/* 코멘트 조회
+GET /api/comment/:id
+*/
 export const getCommentsById = async (ctx, next) => {
   const { id } = ctx.params;
   try {
@@ -15,11 +18,8 @@ export const getCommentsById = async (ctx, next) => {
   }
 };
 
-/* 특정 포스트 조회
-GET /api/posts/:id
-*/
+// 체크필요
 export const read = async (ctx) => {
-  console.log('필요없나');
   ctx.body = ctx.state.comment;
 };
 
@@ -38,8 +38,8 @@ export const write = async (ctx) => {
   }
 };
 
-/* 특정 포스트 제거
-DELETE /api/posts/:id
+/* 특정 코멘트 제거
+DELETE /api/comment/:id
 */
 export const remove = async (ctx) => {
   const { id } = ctx.params;
