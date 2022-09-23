@@ -28,6 +28,10 @@ const sanitizeOption = {
   },
   allowedSchemes: ['data', 'http'],
 };
+
+/* 특정 포스트 조회
+GET /api/posts/:id
+*/
 export const getPostById = async (ctx, next) => {
   const { id } = ctx.params;
   if (!ObjectId.isValid(id)) {
@@ -141,9 +145,7 @@ export const list = async (ctx) => {
     ctx.throw(500, e);
   }
 };
-/* 특정 포스트 조회
-GET /api/posts/:id
-*/
+
 export const read = async (ctx) => {
   ctx.body = ctx.state.post;
 };
@@ -163,6 +165,7 @@ export const remove = async (ctx) => {
 
 export const update = async (ctx) => {
   const { id } = ctx.params;
+  console.log(ctx.request.body);
 
   const schema = Joi.object().keys({
     title: Joi.string().required(),
