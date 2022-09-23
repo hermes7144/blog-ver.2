@@ -5,6 +5,8 @@ import checkedLoggedIn from '../../lib/checkLoggedIn';
 const posts = new Router();
 
 posts.get('/', postsCtrl.list);
+//posts.get('/:boardId', postsCtrl.boardList);
+
 posts.post('/', checkedLoggedIn, postsCtrl.write);
 
 const post = new Router();

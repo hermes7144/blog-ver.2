@@ -6,7 +6,10 @@ const board = new Router();
 
 board.get('/', boardctrl.read);
 board.post('/', boardctrl.insert);
+
 board.put('/:id', checkedLoggedIn, boardctrl.update);
 board.delete('/:id', checkedLoggedIn, boardctrl.remove);
+
+board.get('/:boardId', boardctrl.boardList);
 
 export default board;

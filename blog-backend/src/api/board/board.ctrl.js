@@ -1,6 +1,7 @@
 import Board from '../../models/board';
+import Post from '../../models/post';
 import Joi from 'joi';
-
+import sanitizeHtml from 'sanitize-html';
 /* 코드 읽기
 GET /api/board
 */ export const read = async (ctx) => {
@@ -72,4 +73,39 @@ export const update = async (ctx) => {
   } catch (e) {
     ctx.throw(500, e);
   }
+};
+
+export const boardList = async (ctx) => {
+  const { board } = ctx.params;
+  const page = parseInt(ctx.query.page || '1', 10);
+
+  if (page < 1) {
+    ctx.status = 400;
+    return;
+  }
+
+  try {
+    const posts = await Post.find({ boardId: board })
+      .sort({ _id: -1 })
+      .limit(10)
+      .skip((page - 1) * 10)
+      .lean()
+      .exec();
+    const postCount = await Post.countDocuments({ boardId: board }).exec();
+    ctx.set('Last-Page', Math.ceil(postCount / 10));
+    ctx.body = posts.map((post) => ({
+      ...post,
+      body: removeHtmlAndShorten(post.body),
+    }));
+    console.log(ctx);
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+};
+
+const removeHtmlAndShorten = (body) => {
+  const filtered = sanitizeHtml(body, {
+    allowedTags: [],
+  });
+  return filtered.length < 200 ? filtered : `${filtered.slice(0, 200)}...`;
 };

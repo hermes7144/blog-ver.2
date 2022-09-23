@@ -74,7 +74,6 @@ POST /api/posts
 {title, body}
 */
 export const write = async (ctx) => {
-  console.log(ctx.request.body);
   const schema = Joi.object().keys({
     // 객체가 다음 필드를 가지고 있음을 검증
     title: Joi.string().required(), // required() 가 있으면 필수 항목
@@ -175,10 +174,8 @@ export const update = async (ctx) => {
     board: Joi.string().required(),
     tags: Joi.array().items(Joi.string()).required(),
   });
-  console.log(schema);
 
   const result = schema.validate(ctx.request.body);
-  console.log(result);
   if (result.error) {
     ctx.status = 400;
     ctx.body = result.error;
