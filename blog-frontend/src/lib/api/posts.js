@@ -1,7 +1,6 @@
 import client from './client';
 
-export const writePost = ({ title, body, tags }) =>
-  client.post('/api/posts', { title, body, tags });
+export const writePost = ({ title, body, board, tags }) => client.post('/api/posts', { title, body, board, tags });
 
 export const readPost = (id) => client.get(`/api/posts/${id}`);
 
@@ -11,10 +10,11 @@ export const listPosts = ({ page, username, tag }) => {
   });
 };
 
-export const updatePost = ({ id, title, body, tags }) =>
+export const updatePost = ({ id, title, body, board, tags }) =>
   client.patch(`/api/posts/${id}`, {
     title,
     body,
+    board,
     tags,
   });
 

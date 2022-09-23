@@ -4,9 +4,9 @@ import checkedLoggedIn from '../../lib/checkLoggedIn';
 
 const board = new Router();
 
-board.get('/', checkedLoggedIn, boardctrl.read);
-board.post('/', checkedLoggedIn, boardctrl.insert);
-//board.patch('/', checkedLoggedIn, boardctrl.update);
+board.get('/', boardctrl.read);
+board.post('/', boardctrl.insert);
+board.put('/:id', checkedLoggedIn, boardctrl.update);
 board.delete('/:id', checkedLoggedIn, boardctrl.remove);
 
 export default board;

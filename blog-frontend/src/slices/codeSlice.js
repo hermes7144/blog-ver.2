@@ -4,21 +4,21 @@ const name = 'code';
 
 const initialState = {
   codeList: [],
-  status: 0,
-  statusText: 'Loading',
+  codeStatus: 0,
+  codeStatusText: 'Loading',
 };
 
 const reducers = {
   getCodeList: (state, action) => {},
   getCodeListSuccess: (state, action) => {
-    state.commentList = action.payload?.data ?? [];
-    state.status = action.payload?.status;
-    state.statusText = action.payload?.statusText ?? 'Success';
+    state.codeList = action.payload?.data ?? [];
+    state.codeStatus = action.payload?.status;
+    state.codeStatusText = action.payload?.statusText ?? 'Success';
   },
   getCodeListFail: (state, action) => {
-    state.commentList = initialState.commentList;
-    state.status = action.payload?.status ?? 500;
-    state.statusText = action.payload?.statusText ?? 'Network Error';
+    state.codeList = initialState.commentList;
+    state.codeStatus = action.payload?.status ?? 500;
+    state.codeStatusText = action.payload?.statusText ?? 'Network Error';
   },
 
   postCode: (state, action) => {}, //추가 - 게시판 신규 등록

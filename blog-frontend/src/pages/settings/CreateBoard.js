@@ -7,11 +7,7 @@ import palette from '../../lib/styles/palette';
 import styled from 'styled-components';
 
 function CreateBoard({ setShowCreateBoard }) {
-  const { codeList, codeStatus, codeStatusText } = useSelector((state) => ({
-    codeList: state.code.codeList,
-    codeStatus: state.code.status,
-    codeStatusText: state.code.statusText,
-  }));
+  const { codeList, codeStatus, codeStatusText } = useSelector((state) => state.code);
 
   const [board, setBoard] = useState({});
   const dispatch = useDispatch();
@@ -19,7 +15,7 @@ function CreateBoard({ setShowCreateBoard }) {
   function onChangeArticle(e) {
     setBoard({
       ...board,
-      [e.current.name]: e.currentTarget.value,
+      [e.currentTarget.name]: e.currentTarget.value,
     });
   }
 
@@ -50,7 +46,7 @@ function CreateBoard({ setShowCreateBoard }) {
                 <select name="code" onChange={onChangeArticle}>
                   <option value="">선택</option>
                   {codeList.map((code) => (
-                    <option value={code?.value}>{code?.desc ?? ''}</option>
+                    <option value={code?.value}>{code?.description ?? ''}</option>
                   ))}
                 </select>
               </div>

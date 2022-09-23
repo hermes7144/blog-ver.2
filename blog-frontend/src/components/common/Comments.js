@@ -63,9 +63,9 @@ const SubmitButton = styled.button`
 function Comments(props) {
   const [newComment, setNewComment] = useState('');
   const { user, commentList, status, statusText } = useSelector(
-    ({ user, commentReducer }) => ({
+    ({ user, comment }) => ({
       user: user.user,
-      ...commentReducer,
+      ...comment,
     }),
   );
 

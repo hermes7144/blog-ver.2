@@ -74,10 +74,12 @@ POST /api/posts
 {title, body}
 */
 export const write = async (ctx) => {
+  console.log(ctx.request.body);
   const schema = Joi.object().keys({
     // 객체가 다음 필드를 가지고 있음을 검증
     title: Joi.string().required(), // required() 가 있으면 필수 항목
     body: Joi.string().required(),
+    board: Joi.string().required(),
     tags: Joi.array().items(Joi.string()).required(), // 문자열로 이루어진 배열
   });
 
@@ -89,10 +91,11 @@ export const write = async (ctx) => {
     return;
   }
 
-  const { title, body, tags } = ctx.request.body;
+  const { title, body, board, tags } = ctx.request.body;
   const post = new Post({
     title,
     body: sanitizeHtml(body, sanitizeOption),
+    board,
     tags,
     user: ctx.state.user,
   });
@@ -165,15 +168,17 @@ export const remove = async (ctx) => {
 
 export const update = async (ctx) => {
   const { id } = ctx.params;
-  console.log(ctx.request.body);
 
   const schema = Joi.object().keys({
     title: Joi.string().required(),
     body: Joi.string().required(),
+    board: Joi.string().required(),
     tags: Joi.array().items(Joi.string()).required(),
   });
-  const result = schema.validate(ctx.request.body);
+  console.log(schema);
 
+  const result = schema.validate(ctx.request.body);
+  console.log(result);
   if (result.error) {
     ctx.status = 400;
     ctx.body = result.error;

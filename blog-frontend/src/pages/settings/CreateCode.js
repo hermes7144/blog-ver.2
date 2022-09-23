@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { boardActions } from '../../slices/boardSlice';
 import { codeActions } from '../../slices/codeSlice';
 
 import palette from '../../lib/styles/palette';
@@ -13,13 +12,13 @@ function CreateCode({ setShowCreateCode }) {
   function onChangeCode(e) {
     setCode({
       ...code,
-      [e.current.name]: e.currentTarget.value,
+      [e.currentTarget.name]: e.currentTarget.value,
     });
   }
 
   function onSubmit() {
-    if (code.value !== '' && code.desc !== '') {
-      dispatch(codeActions.postBoard({ code, setShowCreateCode }));
+    if (code.value !== '' && code.description !== '') {
+      dispatch(codeActions.postCode({ code, setShowCreateCode }));
     } else {
       alert('값을 입력해주세요');
     }
@@ -34,7 +33,11 @@ function CreateCode({ setShowCreateCode }) {
       <div>
         <div>
           <span>코드 설명:</span>
-          <input name="desc" onChange={onChangeCode} value={code?.desc ?? ''} />
+          <input
+            name="description"
+            onChange={onChangeCode}
+            value={code?.description ?? ''}
+          />
         </div>
         <div>
           <span>코드 설정값:</span>
@@ -44,7 +47,7 @@ function CreateCode({ setShowCreateCode }) {
             value={code?.value ?? ''}
           />
         </div>
-        <button onClick={onSubmit}></button>
+        <button onClick={onSubmit}>등록</button>
       </div>
     </>
   );

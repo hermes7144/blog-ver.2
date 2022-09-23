@@ -4,21 +4,21 @@ const name = 'board';
 
 const initialState = {
   boardList: [],
-  status: 0,
-  statusText: 'Loading',
+  boardStatus: 0,
+  boardStatusText: 'Loading',
 };
 
 const reducers = {
   getBoardList: (state, action) => {},
   getBoardListSuccess: (state, action) => {
-    state.commentList = action.payload?.data ?? [];
-    state.status = action.payload?.status;
-    state.statusText = action.payload?.statusText ?? 'Success';
+    state.boardList = action.payload?.data ?? [];
+    state.boardStatus = action.payload?.status;
+    state.boardStatusText = action.payload?.statusText ?? 'Success';
   },
   getBoardListFail: (state, action) => {
-    state.commentList = initialState.commentList;
-    state.status = action.payload?.status ?? 500;
-    state.statusText = action.payload?.statusText ?? 'Network Error';
+    state.boardList = initialState.commentList;
+    state.boardStatus = action.payload?.status ?? 500;
+    state.boardStatusText = action.payload?.statusText ?? 'Network Error';
   },
 
   postBoard: (state, action) => {}, //추가 - 게시판 신규 등록

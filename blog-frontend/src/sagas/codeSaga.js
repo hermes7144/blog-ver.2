@@ -4,19 +4,19 @@ import client from '../lib/api/client';
 
 // api 서버 연결 주소
 function apiGetCodeList() {
-  return client.get(`codes/`);
+  return client.get(`/api/code`);
 }
 
 function apiPostCode(requestBody) {
-  return client.post(`codes`, requestBody);
+  return client.post(`/api/code`, requestBody);
 }
 
-function apiPutCode(requestBody) {
-  return client.post(`codes/${requestBody?.id}`, requestBody);
+function apiPutCode({ _id, value, description }) {
+  return client.put(`/api/code/${_id}`, { value, description });
 }
 
-function apiDeleteCode(codeId) {
-  return client.delete(`codes/${codeId}`);
+function apiDeleteCode(_id) {
+  return client.delete(`/api/code/${_id}`);
 }
 
 // api 서버 연결 후 action 호출
@@ -38,7 +38,10 @@ function* asyncGetCodeList() {
 
 function* asyncPostCode(action) {
   try {
-    const response = yield call(apiPostCode);
+    const response = yield call(apiPostCode, {
+      value: action.payload.code.value,
+      description: action.payload.code.description,
+    });
 
     if (response.status === 201) {
       yield put(codeActions.postCodeSuccess(response));
@@ -51,18 +54,13 @@ function* asyncPostCode(action) {
   } catch (e) {
     console.error(e);
     yield put(codeActions.postCodeFail(e.response));
-    yield alert(
-      `등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`,
-    );
+    yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }
 
 function* asyncPutCode(action) {
   try {
-    const response = yield call(apiPutCode, {
-      ...action.payload,
-      updateDate: Date.now(),
-    });
+    const response = yield call(apiPutCode, action.payload);
 
     if (response.status === 200) {
       yield put(codeActions.putCodeSuccess(response));
@@ -74,19 +72,16 @@ function* asyncPutCode(action) {
   } catch (e) {
     console.error(e);
     yield put(codeActions.putCodeFail(e.response));
-    yield alert(
-      `등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`,
-    );
+    yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }
 
 function* asyncDeleteCode(action) {
   try {
     const response = yield call(apiDeleteCode, action.payload);
-
     if (response.status === 200) {
       yield put(codeActions.deleteCodeSuccess(response));
-      alert('저장되었습니다.');
+      alert('삭제되었습니다..');
       yield put(codeActions.getCodeList());
     } else {
       yield put(codeActions.deleteCodeFail(response));
@@ -94,9 +89,7 @@ function* asyncDeleteCode(action) {
   } catch (e) {
     console.error(e);
     yield put(codeActions.deleteCodeFail(e.response));
-    yield alert(
-      `등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`,
-    );
+    yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }
 // action 호출을 감시하는 watch 함수
@@ -110,6 +103,7 @@ function* watchGetCodeList() {
 function* watchPostCode() {
   while (true) {
     const action = yield take(codeActions.postCode);
+
     yield call(asyncPostCode, action);
   }
 }
@@ -129,10 +123,5 @@ function* watchDeleteCode() {
 }
 
 export default function* codeSaga() {
-  yield all([
-    fork(watchGetCodeList),
-    fork(watchPostCode),
-    fork(watchPutCode),
-    fork(watchDeleteCode),
-  ]);
+  yield all([fork(watchGetCodeList), fork(watchPostCode), fork(watchPutCode), fork(watchDeleteCode)]);
 }

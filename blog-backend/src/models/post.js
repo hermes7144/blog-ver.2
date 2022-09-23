@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const PostSchema = new Schema({
   title: String,
   body: String,
+  board: String,
   tags: [String],
   publishedDate: {
     type: Date,
@@ -13,8 +14,8 @@ const PostSchema = new Schema({
   user: {
     _id: mongoose.Types.ObjectId,
     username: String,
-  }
-})
+  },
+});
 
 const Post = mongoose.model('Post', PostSchema);
 export default Post;
