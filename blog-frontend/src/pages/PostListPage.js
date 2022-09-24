@@ -3,6 +3,7 @@ import HeaderContainer from '../containers/common/HeaderContainer';
 import PostListContainer from '../containers/posts/PostListContainer';
 import PaginationContainer from '../containers/posts/PaginationContainer';
 import { Helmet } from 'react-helmet-async';
+import SideBar from '../components/common/SideBar';
 
 const PostListPage = () => {
   return (
@@ -11,6 +12,7 @@ const PostListPage = () => {
         <title>REACTER</title>
       </Helmet>
       <HeaderContainer />
+      <SideBar />
       <PostListContainer />
       <PaginationContainer />
     </>

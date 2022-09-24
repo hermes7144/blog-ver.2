@@ -10,6 +10,12 @@ export const listPosts = ({ page, username, tag }) => {
   });
 };
 
+export const listBoardPosts = ({ boardId, page }) => {
+  return client.get(`/api/board/${boardId}`, {
+    params: { page },
+  });
+};
+
 export const updatePost = ({ id, title, body, board, tags }) =>
   client.patch(`/api/posts/${id}`, {
     title,

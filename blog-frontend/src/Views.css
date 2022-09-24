@@ -1,0 +1,14 @@
+.sidebar {
+  /* for fixed side bar */
+  position: fixed;
+  top: 100px;
+  bottom: 0;
+  width: 200px; /* 너비 고정 */
+  padding-top: 25px;
+  background-color: #333;
+}
+
+.content {
+  /* aside width */
+  margin-left: 200px;
+}

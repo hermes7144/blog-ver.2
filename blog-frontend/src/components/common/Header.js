@@ -8,6 +8,7 @@ const HeaderBlock = styled.div`
   width: 100%;
   background: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  height: 56px;
 `;
 
 const Wrapper = styled(Responsive)`
@@ -43,8 +44,6 @@ const Header = ({ user, onLogout }) => {
           <Link to="/" className="logo">
             REACTER
           </Link>
-          <Link to="/">HOME</Link>
-          <Link to="/">FAQ</Link>
           {user ? (
             <div className="right">
               <Link to="/control">설정</Link>

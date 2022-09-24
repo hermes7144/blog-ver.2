@@ -5,10 +5,11 @@ import loading from './loading';
 import user, { userSaga } from './user';
 import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
-import posts, { postsSaga } from './posts';
 import { comment } from '../slices/commentSlice';
 import { board } from '../slices/boardSlice';
 import { code } from '../slices/codeSlice';
+import { posts } from '../slices/postsSlice';
+import postsSaga from '../sagas/postsSaga';
 import commentSaga from '../sagas/commentSaga';
 import boardSaga from '../sagas/boardSaga';
 import codeSaga from '../sagas/codeSaga';
@@ -26,16 +27,7 @@ const rootReducer = combineReducers({
 });
 
 export function* rootSaga() {
-  yield all([
-    authSaga(),
-    userSaga(),
-    writeSaga(),
-    postSaga(),
-    postsSaga(),
-    commentSaga(),
-    boardSaga(),
-    codeSaga(),
-  ]);
+  yield all([authSaga(), userSaga(), writeSaga(), postSaga(), postsSaga(), commentSaga(), boardSaga(), codeSaga()]);
 }
 
 export default rootReducer;
