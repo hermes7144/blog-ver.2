@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PostList from '../../components/posts/PostList';
-import { listPosts } from '../../modules/posts';
 import { postsActions } from '../../slices/postsSlice';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 const PostListContainer = () => {
   const { username, boardName } = useParams();
-  console.log('boardName', boardName);
+  console.log(boardName);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { posts, error, loading, user, boardList } = useSelector(({ posts, loading, user, board }) => ({
@@ -20,7 +19,6 @@ const PostListContainer = () => {
   let boardId = '';
   if (boardName) {
     for (let i in boardList) {
-      console.log('boardList[i].code', boardList[i].code);
       if (boardName === boardList[i].name) {
         boardId = boardList[i].code;
       }
@@ -31,11 +29,11 @@ const PostListContainer = () => {
     const tag = searchParams.get('tag');
     // page가 없으면 1을 기본값으로 사용
     const page = parseInt(searchParams.get('page'), 10) || 1;
+    console.log('boardId', boardId);
     if (boardId !== '') {
-      console.log('ddd');
+      console.log('getBoardPostsList', boardId);
       dispatch(postsActions.getBoardPostsList({ boardId, page }));
     } else {
-      console.log('aaa');
       dispatch(postsActions.getPostsList({ tag, username, page }));
     }
   }, [dispatch, searchParams, username, boardId]);

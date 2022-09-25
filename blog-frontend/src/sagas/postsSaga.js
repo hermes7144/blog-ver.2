@@ -6,7 +6,6 @@ import { postsActions } from '../slices/postsSlice';
 
 function* asyncGetPostsList(action) {
   try {
-    console.log(action.payload);
     const response = yield call(postsAPI.listPosts, action.payload);
 
     if (response.status === 200) {
@@ -25,6 +24,7 @@ function* asyncGetBoardPostsList(action) {
     const response = yield call(postsAPI.listBoardPosts, action.payload);
 
     if (response.status === 200) {
+      console.log(response);
       yield put(postsActions.getBoardPostsListSuccess(response));
     } else {
       yield put(postsActions.getBoardPostsListFail(response));
