@@ -14,7 +14,6 @@ GET /api/board
 POST /api/board
 */
 export const insert = async (ctx) => {
-  console.log(ctx.request.body);
   const { code, name } = ctx.request.body;
   const board = new Board({
     code,
@@ -76,7 +75,8 @@ export const update = async (ctx) => {
 };
 
 export const boardList = async (ctx) => {
-  const { board } = ctx.params;
+  const { boardId } = ctx.params;
+
   const page = parseInt(ctx.query.page || '1', 10);
 
   if (page < 1) {
@@ -85,19 +85,18 @@ export const boardList = async (ctx) => {
   }
 
   try {
-    const posts = await Post.find({ boardId: board })
+    const posts = await Post.find({ board: boardId })
       .sort({ _id: -1 })
       .limit(10)
       .skip((page - 1) * 10)
       .lean()
       .exec();
-    const postCount = await Post.countDocuments({ boardId: board }).exec();
+    const postCount = await Post.countDocuments({ board: boardId }).exec();
     ctx.set('Last-Page', Math.ceil(postCount / 10));
     ctx.body = posts.map((post) => ({
       ...post,
       body: removeHtmlAndShorten(post.body),
     }));
-    console.log(ctx);
   } catch (e) {
     ctx.throw(500, e);
   }

@@ -4,21 +4,28 @@ import EditorContainer from '../containers/write/EditorContainer';
 import TagBoxContainer from '../containers/write/TagBoxContainer';
 import WriteActionButtonsContainer from '../containers/write/WriteActionButtonsContainer';
 import CategorySelectBox from '../components/common/CategorySelectBox';
+import SideBar from '../components/common/SideBar';
 
 import { Helmet } from 'react-helmet-async';
+import HeaderContainer from '../containers/common/HeaderContainer';
 
 const WritePage = () => {
   return (
-    <Responsive>
+    <>
       <Helmet>
         <title>글 작성하기 - REACTERS</title>
       </Helmet>
-      <EditorContainer />
-      <CategorySelectBox />
+      <HeaderContainer />
 
-      <TagBoxContainer />
-      <WriteActionButtonsContainer />
-    </Responsive>
+      <SideBar />
+      <Responsive>
+        <EditorContainer />
+        <CategorySelectBox />
+
+        <TagBoxContainer />
+        <WriteActionButtonsContainer />
+      </Responsive>
+    </>
   );
 };
 

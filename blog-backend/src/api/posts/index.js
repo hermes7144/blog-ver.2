@@ -5,12 +5,10 @@ import checkedLoggedIn from '../../lib/checkLoggedIn';
 const posts = new Router();
 
 posts.get('/', postsCtrl.list);
-//posts.get('/:boardId', postsCtrl.boardList);
 
 posts.post('/', checkedLoggedIn, postsCtrl.write);
 
 const post = new Router();
-
 post.get('/', postsCtrl.read);
 post.delete('/', checkedLoggedIn, postsCtrl.checkOwnPost, postsCtrl.remove);
 post.patch('/', checkedLoggedIn, postsCtrl.checkOwnPost, postsCtrl.update);
