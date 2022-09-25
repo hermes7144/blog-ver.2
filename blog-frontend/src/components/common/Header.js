@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import Button from './Button';
+import { AiFillSetting } from 'react-icons/ai';
+
 const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
@@ -42,11 +44,13 @@ const Header = ({ user, onLogout }) => {
       <HeaderBlock>
         <Wrapper>
           <Link to="/" className="logo">
-            REACTER
+            Front Dev.
           </Link>
           {user ? (
             <div className="right">
-              <Link to="/control">설정</Link>
+              <Link to="/control">
+                <AiFillSetting size="24" />
+              </Link>
               <UserInfo>{user.username}</UserInfo>
               <Button onClick={onLogout}>로그아웃</Button>
             </div>

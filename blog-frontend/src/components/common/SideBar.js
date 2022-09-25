@@ -11,6 +11,10 @@ const SideBarBlock = styled.div`
   padding-top: 25px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
 
+  a:hover {
+    text-decoration: underline;
+  }
+
   @media screen and (max-width: 800px) {
     top: 60px;
     position: static;

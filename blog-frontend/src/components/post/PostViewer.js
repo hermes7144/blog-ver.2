@@ -44,16 +44,12 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
   return (
     <PostViewerBlock>
       <Helmet>
-        <title>{title} - REACTER</title>
+        <title>{title} - Front Dev.</title>
       </Helmet>
 
       <PostHead>
         <h1>{title}</h1>
-        <SubInfo
-          username={user.username}
-          publishedDate={publishedDate}
-          hasMarginTop
-        />
+        <SubInfo username={user.username} publishedDate={publishedDate} hasMarginTop />
         <Tags tags={tags} />
       </PostHead>
       {actionButtons}

@@ -38,7 +38,7 @@ const ControlPage = () => {
   return (
     <>
       <Helmet>
-        <title>설정 - REACTERS</title>
+        <title>설정 - Front Dev.</title>
       </Helmet>
       <HeaderContainer />
       <PostViewerBlock>

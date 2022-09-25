@@ -20,7 +20,7 @@ const SelectForm = styled.select`
   border-radius: 4px;
   width: 280px;
   border: 1px solid ${palette.gray[9]}; /* 스타일 초기화 */
-  font-size: 1rem;
+  font-size: 1.2rem;
 `;
 
 function CategorySelectBox() {
@@ -49,7 +49,7 @@ function CategorySelectBox() {
         <SelectBoxBlock>
           <h4>카테고리</h4>
           <SelectForm value={board} onChange={onChangeBoard}>
-            <option>선택</option>
+            <option>--Select--</option>
             {boardList.map((board) => (
               <option value={board.code}>{board.name}</option>
             ))}

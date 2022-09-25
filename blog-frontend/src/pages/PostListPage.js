@@ -9,7 +9,7 @@ const PostListPage = () => {
   return (
     <>
       <Helmet>
-        <title>REACTER</title>
+        <title>Front Dev.</title>
       </Helmet>
       <HeaderContainer />
       <SideBar />

@@ -74,12 +74,12 @@ const MainPage = () => {
   return (
     <div>
       <Helmet>
-        <title>REACTER</title>
+        <title>Front Dev.</title>
       </Helmet>
       <HeaderContainer />
       <MainBlock>
         <HeaderBlock>
-          <h1>REACTER</h1>
+          <h1>Front Dev.</h1>
           <p>건강하고 맛있는 삶을 위하여</p>
           <ButtonWithMarginTop main to="/post">
             시작하기

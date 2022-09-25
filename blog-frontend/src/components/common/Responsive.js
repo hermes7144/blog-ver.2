@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import SideBar from './SideBar';
 
 const ResponsiveBlock = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
-  margin: 0 auto; /* 중앙 정렬 */
   margin-left: 200px;
-
-  /* 브라우저 크기에 따라 가로 사이즈 변경 */
+  max-width: 1024px;
 
   @media screen and (max-width: 800px) {
     float: none;
