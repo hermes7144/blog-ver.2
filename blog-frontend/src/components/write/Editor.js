@@ -1,10 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import Quill from 'quill';
-import 'quill/dist/quill.bubble.css';
+import 'quill/dist/quill.snow.css';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
-import Responsive from '../common/Responsive';
-
 const EditorBlock = styled.div`
   /* 페이지 위 아래 여백 지정 */
   padding-top: 5rem;
@@ -38,7 +36,7 @@ const Editor = ({ title, body, onChangeField }) => {
 
   useEffect(() => {
     quillInstance.current = new Quill(quillElement.current, {
-      theme: 'bubble',
+      theme: 'snow',
       placeholder: '내용을 작성하세요...',
       modules: {
         toolbar: [
