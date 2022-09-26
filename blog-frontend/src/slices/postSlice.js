@@ -8,13 +8,13 @@ const initialState = {
 };
 
 const reducers = {
-  getReadPost: (state, action) => {},
-  getReadPostSuccess: (state, action) => {
-    state.post = action.payload?.data ?? [];
+  readPost: (state, action) => {},
+  readPostSuccess: (state, { payload: post }) => {
+    state.post = post;
   },
-  getReadPostFail: (state, action) => {
-    state.post = initialState.commentList;
-    state.error = action.payload?.status ?? 500;
+  readPostFailure: (state, { payload: postError }) => {
+    state.post = null;
+    state.error = postError;
   },
   unloadPost: () => initialState,
 };

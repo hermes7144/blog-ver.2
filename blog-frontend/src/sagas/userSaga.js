@@ -1,23 +1,11 @@
-import { all, call, fork, put, take } from 'redux-saga/effects';
+import { call, takeLatest } from 'redux-saga/effects';
 import * as authAPI from '../lib/api/auth';
 import { userActions } from '../slices/userSlice';
+import createRequestSaga from '../lib/createRequestSaga';
 
 // api 서버 연결 후 action 호출
 
-function* asyncCheck(action) {
-  try {
-    const response = yield call(authAPI.check, action.payload);
-
-    if (response.status === 200) {
-      yield put(userActions.checkSuccess(response));
-    } else {
-      yield put(userActions.checktFail(response));
-    }
-  } catch (e) {
-    console.error(e);
-    yield put(userActions.checkFail(e.response));
-  }
-}
+const checkSaga = createRequestSaga(userActions.check, authAPI.check);
 
 function checkFailureSaga() {
   try {
@@ -34,30 +22,9 @@ function* logoutSaga() {
     console.log(e);
   }
 }
-// action 호출을 감시하는 watch 함수
-function* watchCheck() {
-  while (true) {
-    const action = yield take(userActions.check);
-    yield call(asyncCheck, action);
-  }
-}
-
-// action 호출을 감시하는 watch 함수
-function* watchCheckFailure() {
-  while (true) {
-    const action = yield take(userActions.checkFail);
-    yield call(checkFailureSaga, action);
-  }
-}
-
-// action 호출을 감시하는 watch 함수
-function* watchLogout() {
-  while (true) {
-    const action = yield take(userActions.logout);
-    yield call(logoutSaga, action);
-  }
-}
 
 export default function* userSaga() {
-  yield all([fork(watchCheck), fork(watchCheckFailure), fork(watchLogout)]);
+  yield takeLatest(userActions.check, checkSaga);
+  yield takeLatest(userActions.checkFailure, checkFailureSaga);
+  yield takeLatest(userActions.logout, logoutSaga);
 }

@@ -28,11 +28,11 @@ function* asyncGetCodeList() {
     if (response.status === 200) {
       yield put(codeActions.getCodeListSuccess(response));
     } else {
-      yield put(codeActions.getCodeListFail(response));
+      yield put(codeActions.getCodeListFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(codeActions.getCodeListFail(e.response));
+    yield put(codeActions.getCodeListFailure(e.response));
   }
 }
 
@@ -49,11 +49,11 @@ function* asyncPostCode(action) {
       yield call(action.payload?.setShowCreateCode, false);
       yield put(codeActions.getCodeList());
     } else {
-      yield put(codeActions.postCodeFail(response));
+      yield put(codeActions.postCodeFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(codeActions.postCodeFail(e.response));
+    yield put(codeActions.postCodeFailure(e.response));
     yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }
@@ -67,11 +67,11 @@ function* asyncPutCode(action) {
       alert('저장되었습니다.');
       yield put(codeActions.getCodeList());
     } else {
-      yield put(codeActions.putCodeFail(response));
+      yield put(codeActions.putCodeFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(codeActions.putCodeFail(e.response));
+    yield put(codeActions.putCodeFailure(e.response));
     yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }
@@ -84,11 +84,11 @@ function* asyncDeleteCode(action) {
       alert('삭제되었습니다..');
       yield put(codeActions.getCodeList());
     } else {
-      yield put(codeActions.deleteCodeFail(response));
+      yield put(codeActions.deleteCodeFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(codeActions.deleteCodeFail(e.response));
+    yield put(codeActions.deleteCodeFailure(e.response));
     yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }

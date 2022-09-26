@@ -15,7 +15,7 @@ const reducers = {
     state.codeStatus = action.payload?.status;
     state.codeStatusText = action.payload?.statusText ?? 'Success';
   },
-  getCodeListFail: (state, action) => {
+  getCodeListFailure: (state, action) => {
     state.codeList = initialState.commentList;
     state.codeStatus = action.payload?.status ?? 500;
     state.codeStatusText = action.payload?.statusText ?? 'Network Error';
@@ -23,15 +23,15 @@ const reducers = {
 
   postCode: (state, action) => {}, //추가 - 게시판 신규 등록
   postCodeSuccess: (state, action) => {}, //추가
-  postCodeFail: (state, action) => {}, //추가
+  postCodeFailure: (state, action) => {}, //추가
 
   putCode: (state, action) => {}, //추가 - 게시판 개별 수정
   putCodeSuccess: (state, action) => {}, //추가
-  putCodeFail: (state, action) => {}, //추가
+  putCodeFailure: (state, action) => {}, //추가
 
   deleteCode: (state, action) => {}, //추가 - 게시판 개별 삭제
   deleteCodeSuccess: (state, action) => {}, //추가
-  deleteCodeFail: (state, action) => {}, //추가
+  deleteCodeFailure: (state, action) => {}, //추가
 };
 
 const codeSlice = createSlice({

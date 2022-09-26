@@ -28,11 +28,11 @@ function* asyncGetBoardList() {
     if (response.status === 200) {
       yield put(boardActions.getBoardListSuccess(response));
     } else {
-      yield put(boardActions.getBoardListFail(response));
+      yield put(boardActions.getBoardListFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(boardActions.getBoardListFail(e.response));
+    yield put(boardActions.getBoardListFailure(e.response));
   }
 }
 
@@ -49,11 +49,11 @@ function* asyncPostBoard(action) {
       yield call(action.payload?.setShowCreateBoard, false);
       yield put(boardActions.getBoardList());
     } else {
-      yield put(boardActions.postBoardFail(response));
+      yield put(boardActions.postBoardFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(boardActions.postBoardFail(e.response));
+    yield put(boardActions.postBoardFailure(e.response));
     yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }
@@ -67,11 +67,11 @@ function* asyncPutBoard(action) {
       alert('저장되었습니다.');
       yield put(boardActions.getBoardList());
     } else {
-      yield put(boardActions.putBoardFail(response));
+      yield put(boardActions.putBoardFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(boardActions.putBoardFail(e.response));
+    yield put(boardActions.putBoardFailure(e.response));
     yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }
@@ -85,11 +85,11 @@ function* asyncDeleteBoard(action) {
       alert('삭제되었습니다.');
       yield put(boardActions.getBoardList());
     } else {
-      yield put(boardActions.deleteBoardFail(response));
+      yield put(boardActions.deleteBoardFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(boardActions.deleteBoardFail(e.response));
+    yield put(boardActions.deleteBoardFailure(e.response));
     yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }

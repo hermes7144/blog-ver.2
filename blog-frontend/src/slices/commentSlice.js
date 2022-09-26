@@ -15,7 +15,7 @@ const reducers = {
     state.status = action.payload?.status;
     state.statusText = action.payload?.statusText ?? 'Success';
   },
-  getCommentListFail: (state, action) => {
+  getCommentListFailure: (state, action) => {
     state.commentList = initialState.commentList;
     state.status = action.payload?.status ?? 500;
     state.statusText = action.payload?.statusText ?? 'Network Error';
@@ -23,11 +23,11 @@ const reducers = {
 
   insertComment: (state, action) => {},
   insertCommentSuccess: (state, action) => {},
-  insertCommentFail: (state, action) => {},
+  insertCommentFailure: (state, action) => {},
 
   deleteComment: (state, action) => {},
   deleteCommentSuccess: (state, action) => {},
-  deleteCommentFail: (state, action) => {},
+  deleteCommentFailure: (state, action) => {},
 };
 
 const commentSlice = createSlice({

@@ -23,9 +23,9 @@ const reducers = {
     postError: null,
   }),
   writePostSuccess: (state, { payload: post }) => {
-    state.post = post.data;
+    state.post = post;
   },
-  writePostFail: (state, { payload: postError }) => {
+  writePostFailure: (state, { payload: postError }) => {
     state.postError = postError;
   },
   setOriginalPost: (state, { payload: post }) => ({
@@ -38,9 +38,9 @@ const reducers = {
   updatePost: () => {},
 
   updatePostSuccess: (state, { payload: post }) => {
-    state.post = post.data;
+    state.post = post;
   },
-  updatePostFail: (state, { payload: postError }) => {
+  updatePostFailure: (state, { payload: postError }) => {
     state.postError = postError;
   },
 };

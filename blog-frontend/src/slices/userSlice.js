@@ -8,14 +8,14 @@ const initialState = {
 
 const reducers = {
   tempSetUser: (state, { payload: user }) => {
-    state.user = user.data;
+    state.user = user;
   },
   check: () => {},
   checkSuccess: (state, { payload: user }) => {
-    state.user = user.data;
+    state.user = user;
     state.checkError = null;
   },
-  checkFail: (state, { payload: error }) => {
+  checkFailure: (state, { payload: error }) => {
     state.user = null;
     state.checkError = error;
   },

@@ -10,11 +10,11 @@ function* asyncGetCommentList(action) {
     if (response.status === 200) {
       yield put(commentActions.getCommentListSuccess(response));
     } else {
-      yield put(commentActions.getCommentListFail(response));
+      yield put(commentActions.getCommentListFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(commentActions.getCommentListFail(e.response));
+    yield put(commentActions.getCommentListFailure(e.response));
   }
 }
 
@@ -29,14 +29,12 @@ function* asyncInsertComment(action) {
       yield put(commentActions.insertCommentSuccess());
       yield put(commentActions.getCommentList(post.post._id));
     } else {
-      yield put(commentActions.insertCommentFail(response));
+      yield put(commentActions.insertCommentFailure(response));
     }
   } catch (e) {
     console.error(e);
-    yield put(commentActions.insertCommentFail(e.response));
-    yield alert(
-      `등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`,
-    );
+    yield put(commentActions.insertCommentFailure(e.response));
+    yield alert(`등록 실패 Error: ${e?.response?.status}, ${e?.response?.statusText}`);
   }
 }
 
@@ -73,9 +71,5 @@ function* watchDeleteComment() {
 }
 
 export default function* commentSaga() {
-  yield all([
-    fork(watchGetCommentList),
-    fork(watchInsertComment),
-    fork(watchDeleteComment),
-  ]);
+  yield all([fork(watchGetCommentList), fork(watchInsertComment), fork(watchDeleteComment)]);
 }

@@ -10,23 +10,23 @@ const initialState = {
 
 const reducers = {
   getPostsList: (state, action) => {},
-  getPostsListSuccess: (state, action) => {
-    state.posts = action.payload?.data ?? [];
-    state.lastPage = parseInt(action.payload?.headers['last-page'], 10);
+  getPostsListSuccess: (state, { payload: posts, meta: response }) => {
+    state.posts = posts;
+    state.lastPage = parseInt(response.headers['last-page'], 10); // 문자열을 숫자로 변환
   },
-  getPostsListFail: (state, action) => {
-    state.posts = initialState.commentList;
-    state.error = action.payload?.status ?? 500;
+  getPostsListFailure: (state, { payload: error }) => {
+    state.posts = null;
+    state.error = error;
   },
 
   getBoardPostsList: (state, action) => {},
-  getBoardPostsListSuccess: (state, action) => {
-    state.posts = action.payload?.data ?? [];
-    state.lastPage = parseInt(action.payload?.headers['last-page'], 10);
+  getBoardPostsListSuccess: (state, { payload: posts, meta: response }) => {
+    state.posts = posts;
+    state.lastPage = parseInt(response.headers['last-page'], 10); // 문자열을 숫자로 변환
   },
-  getBoardPostsListFail: (state, action) => {
-    state.posts = initialState.commentList;
-    state.error = action.payload?.status ?? 500;
+  getBoardPostsListFailure: (state, { payload: error }) => {
+    state.posts = null;
+    state.error = error;
   },
 };
 

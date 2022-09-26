@@ -30,7 +30,7 @@ const reducers = {
     state.authError = null;
     state.auth = auth;
   },
-  registerFail: (state, { payload: error }) => {
+  registerFailure: (state, { payload: error }) => {
     state.authError = error;
   },
   login: () => {},
@@ -39,7 +39,7 @@ const reducers = {
     state.authError = null;
     state.auth = auth;
   },
-  loginFail: (state, { payload: error }) => {
+  loginFailure: (state, { payload: error }) => {
     state.authError = error;
   },
 };

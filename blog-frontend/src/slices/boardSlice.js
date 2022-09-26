@@ -15,7 +15,7 @@ const reducers = {
     state.boardStatus = action.payload?.status;
     state.boardStatusText = action.payload?.statusText ?? 'Success';
   },
-  getBoardListFail: (state, action) => {
+  getBoardListFailure: (state, action) => {
     state.boardList = initialState.commentList;
     state.boardStatus = action.payload?.status ?? 500;
     state.boardStatusText = action.payload?.statusText ?? 'Network Error';
@@ -23,15 +23,15 @@ const reducers = {
 
   postBoard: (state, action) => {}, //추가 - 게시판 신규 등록
   postBoardSuccess: (state, action) => {}, //추가
-  postBoardFail: (state, action) => {}, //추가
+  postBoardFailure: (state, action) => {}, //추가
 
   putBoard: (state, action) => {}, //추가 - 게시판 개별 수정
   putBoardSuccess: (state, action) => {}, //추가
-  putBoardFail: (state, action) => {}, //추가
+  putBoardFailure: (state, action) => {}, //추가
 
   deleteBoard: (state, action) => {}, //추가 - 게시판 개별 삭제
   deleteBoardSuccess: (state, action) => {}, //추가
-  deleteBoardFail: (state, action) => {}, //추가
+  deleteBoardFailure: (state, action) => {}, //추가
 };
 
 const boardSlice = createSlice({
