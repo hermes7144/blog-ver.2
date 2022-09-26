@@ -23,3 +23,4 @@ If you have problem, feel free to ask me ^^
 6. 게시글 레이아웃 변경
 7. 뒤로가기 누를 시 Confirm 창 생성.
 8. 설정 UI 및 컨셉 변경
+9. 댓글 창 UI 
