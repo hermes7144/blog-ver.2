@@ -24,3 +24,4 @@ If you have problem, feel free to ask me ^^
 7. 뒤로가기 누를 시 Confirm 창 생성.
 8. 설정 UI 및 컨셉 변경
 9. 댓글 창 UI 
+10. Semantic 웹 구성
