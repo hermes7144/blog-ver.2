@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
-import { changeField } from '../../modules/write';
 import { boardActions } from '../../slices/boardSlice';
+import { writeActions } from '../../slices/writeSlice';
 
 const SelectBoxBlock = styled.div`
   width: 100%;
@@ -26,18 +26,10 @@ const SelectForm = styled.select`
 function CategorySelectBox() {
   const { boardList } = useSelector((state) => state.board);
   const board = useSelector((state) => state.write.board);
-  console.log(board);
 
   const dispatch = useDispatch();
 
-  const onChangeBoard = (e) => {
-    dispatch(
-      changeField({
-        key: 'board',
-        value: e.target.value,
-      }),
-    );
-  };
+  const onChangeBoard = (e) => dispatch(writeActions.changeField({ key: 'board', value: e.target.value }));
 
   useEffect(() => {
     dispatch(boardActions.getBoardList());
@@ -50,8 +42,10 @@ function CategorySelectBox() {
           <h4>카테고리</h4>
           <SelectForm value={board} onChange={onChangeBoard}>
             <option>--Select--</option>
-            {boardList.map((board) => (
-              <option value={board.code}>{board.name}</option>
+            {boardList.map((board, index) => (
+              <option value={board.code} key={index}>
+                {board.name}
+              </option>
             ))}
           </SelectForm>
         </SelectBoxBlock>

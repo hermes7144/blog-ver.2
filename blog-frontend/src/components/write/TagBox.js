@@ -59,17 +59,11 @@ const TagListBlock = styled.div`
 `;
 
 // React.memo를 사용하여 tag 값이 바뀔 때만 리렌더링되도록 처리
-const TagItem = React.memo(({ tag, onRemove, onChangeTags }) => (
-  <Tag onClick={() => onRemove(tag)}>#{tag}</Tag>
-));
+const TagItem = React.memo(({ tag, onRemove, onChangeTags }) => <Tag onClick={() => onRemove(tag)}>#{tag}</Tag>);
 
 // React.memo를 사용하여 tags 값이 바뀔 때만 리렌더링되도록 처리
 const TagList = React.memo(({ tags, onRemove }) => (
-  <TagListBlock>
-    {tags.map((tag) => (
-      <TagItem key={tag} tag={tag} onRemove={onRemove} />
-    ))}
-  </TagListBlock>
+  <TagListBlock>{tags && tags.map((tag) => <TagItem key={tag} tag={tag} onRemove={onRemove} />)}</TagListBlock>
 ));
 
 const TagBox = ({ tags, onChangeTags }) => {
@@ -118,11 +112,7 @@ const TagBox = ({ tags, onChangeTags }) => {
     <TagBoxBlock>
       <h4>태그</h4>
       <TagForm onSubmit={onSubmit}>
-        <input
-          placeholder="태그를 입력하세요"
-          value={input}
-          onChange={onChange}
-        />
+        <input placeholder="태그를 입력하세요" value={input} onChange={onChange} />
         <button type="submit">추가</button>
       </TagForm>
       <TagList tags={localTags} onRemove={onRemove} />

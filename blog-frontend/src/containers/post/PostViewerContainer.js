@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { readPost, unloadPost } from '../../modules/post';
+import { postActions } from '../../slices/postSlice';
 import PostViewer from '../../components/post/PostViewer';
 import PostActionButtons from '../../components/post/PostActionButtons';
-import { setOriginalPost } from '../../modules/write';
+import { writeActions } from '../../slices/writeSlice';
 import { removePost } from '../../lib/api/posts';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -12,25 +12,23 @@ const PostViewerContainer = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { post, error, loading, user } = useSelector(
-    ({ post, loading, user }) => ({
-      post: post.post,
-      error: post.error,
-      loading: loading['post/READ_POST'],
-      user: user.user,
-    }),
-  );
+  const { post, error, loading, user } = useSelector(({ post, loading, user }) => ({
+    post: post.post,
+    error: post.error,
+    loading: loading['post/READ_POST'],
+    user: user.user,
+  }));
 
   useEffect(() => {
-    dispatch(readPost(postId));
+    dispatch(postActions.getReadPost(postId));
     // 언마운트될 때 리덕스에서 포스트 데이터 없애기
     return () => {
-      dispatch(unloadPost());
+      dispatch(postActions.unloadPost());
     };
   }, [dispatch, postId]);
 
   const onEdit = () => {
-    dispatch(setOriginalPost(post));
+    dispatch(writeActions.setOriginalPost(post));
     navigate('/write');
   };
 
@@ -51,9 +49,7 @@ const PostViewerContainer = () => {
       loading={loading}
       error={error}
       user={user}
-      actionButtons={
-        ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />
-      }
+      actionButtons={ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />}
     />
   );
 };

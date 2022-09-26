@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { changeField, initializeForm, login } from '../../modules/auth';
+import { authActions } from '../../slices/authSlice';
+
 import AuthForm from '../../components/auth/AuthForm';
 import { check } from '../../modules/user';
 
@@ -19,7 +20,7 @@ const LoginForm = () => {
   const onChange = (e) => {
     const { value, name } = e.target;
     dispatch(
-      changeField({
+      authActions.changeField({
         form: 'login',
         key: name,
         value,
@@ -31,12 +32,12 @@ const LoginForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, password } = form;
-    dispatch(login({ username, password }));
+    dispatch(authActions.login({ username, password }));
   };
 
   // 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
   useEffect(() => {
-    dispatch(initializeForm('login'));
+    dispatch(authActions.initializeForm('login'));
   }, [dispatch]);
 
   useEffect(() => {
@@ -63,15 +64,7 @@ const LoginForm = () => {
     }
   }, [navigate, user]);
 
-  return (
-    <AuthForm
-      type="login"
-      form={form}
-      onChange={onChange}
-      onSubmit={onSubmit}
-      error={error}
-    />
-  );
+  return <AuthForm type="login" form={form} onChange={onChange} onSubmit={onSubmit} error={error} />;
 };
 
 export default LoginForm;

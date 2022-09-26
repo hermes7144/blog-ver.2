@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, register } from '../../modules/auth';
+import { authActions } from '../../slices/authSlice';
 import AuthForm from '../../components/auth/AuthForm';
 import { check } from '../../modules/user';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,7 @@ const RegisterForm = () => {
   const onChange = (e) => {
     const { value, name } = e.target;
     dispatch(
-      changeField({
+      authActions.changeField({
         form: 'register',
         key: name,
         value,
@@ -39,18 +39,16 @@ const RegisterForm = () => {
     // 비밀번호가 일치하지 않는다면
     if (password !== passwordConfirm) {
       setError('비밀번호가 일치하지 않습니다.');
-      dispatch(changeField({ form: 'register', key: 'password', value: '' }));
-      dispatch(
-        changeField({ form: 'register', key: 'passwordConfirm', value: '' }),
-      );
+      dispatch(authActions.changeField({ form: 'register', key: 'password', value: '' }));
+      dispatch(authActions.changeField({ form: 'register', key: 'passwordConfirm', value: '' }));
       return;
     }
-    dispatch(register({ username, password }));
+    dispatch(authActions.register({ username, password }));
   };
 
   // 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
   useEffect(() => {
-    dispatch(initializeForm('register'));
+    dispatch(authActions.initializeForm('register'));
   }, [dispatch]);
 
   // 회원가입 성공 / 실패 처리
@@ -85,15 +83,7 @@ const RegisterForm = () => {
     }
   }, [navigate, user]);
 
-  return (
-    <AuthForm
-      type="register"
-      form={form}
-      onChange={onChange}
-      onSubmit={onSubmit}
-      error={error}
-    />
-  );
+  return <AuthForm type="register" form={form} onChange={onChange} onSubmit={onSubmit} error={error} />;
 };
 
 export default RegisterForm;
