@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { authActions } from '../../slices/authSlice';
 
 import AuthForm from '../../components/auth/AuthForm';
-import { check } from '../../modules/user';
+import { userActions } from '../../slices/userSlice';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ const LoginForm = () => {
     }
     if (auth) {
       console.log('로그인 성공');
-      dispatch(check());
+      dispatch(userActions.check());
     }
   }, [auth, authError, dispatch]);
 

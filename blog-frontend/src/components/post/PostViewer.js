@@ -26,7 +26,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-const PostViewer = ({ post, error, loading, actionButtons }) => {
+const PostViewer = ({ post, error, actionButtons }) => {
   // 에러 발생 시
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -36,7 +36,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
   }
 
   // 로딩중이거나, 아직 포스트 데이터가 없을 시
-  if (loading || !post) {
+  if (!post) {
     return null;
   }
 

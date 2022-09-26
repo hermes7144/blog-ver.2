@@ -79,7 +79,6 @@ function* asyncPutBoard(action) {
 function* asyncDeleteBoard(action) {
   try {
     const response = yield call(apiDeleteBoard, action.payload);
-    console.log(response);
 
     if (response.status === 200) {
       yield put(boardActions.deleteBoardSuccess(response));

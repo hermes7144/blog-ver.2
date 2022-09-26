@@ -6,13 +6,11 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 const PostListContainer = () => {
   const { username, boardName } = useParams();
-  console.log(boardName);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const { posts, error, loading, user, boardList } = useSelector(({ posts, loading, user, board }) => ({
+  const { posts, error, user, boardList } = useSelector(({ posts, user, board }) => ({
     posts: posts.posts,
     error: posts.error,
-    loading: loading['posts/LIST_POSTS'],
     user: user.user,
     boardList: board.boardList,
   }));
@@ -30,13 +28,12 @@ const PostListContainer = () => {
     // page가 없으면 1을 기본값으로 사용
     const page = parseInt(searchParams.get('page'), 10) || 1;
     if (boardId !== '') {
-      console.log('getBoardPostsList', boardId);
       dispatch(postsActions.getBoardPostsList({ boardId, page }));
     } else {
       dispatch(postsActions.getPostsList({ tag, username, page }));
     }
   }, [dispatch, searchParams, username, boardId]);
-  return <PostList loading={loading} error={error} posts={posts} showWriteButton={user} />;
+  return <PostList error={error} posts={posts} showWriteButton={user} />;
 };
 
 export default PostListContainer;

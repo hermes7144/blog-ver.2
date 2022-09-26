@@ -4,7 +4,9 @@ import { auth } from '../slices/authSlice';
 import authSaga from '../sagas/authSaga';
 
 import loading from './loading';
-import user, { userSaga } from './user';
+import { user } from '../slices/userSlice';
+import userSaga from '../sagas/userSaga';
+
 import { write } from '../slices/writeSlice';
 import writeSaga from '../sagas/writeSaga';
 import { post } from '../slices/postSlice';
