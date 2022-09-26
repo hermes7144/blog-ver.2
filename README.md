@@ -15,6 +15,7 @@ If you have problem, feel free to ask me ^^
 4. 페이지네이션 구조 
 
 해야할 것
+1. 검색기능
 2. 콘테이너, 프레젠테이션 구조로 되어있는 부분 통합
 3. 리덕스 툴킷으로 리팩토링 필요
 4. next.js로 SEO 최적화
@@ -22,6 +23,5 @@ If you have problem, feel free to ask me ^^
 6. 게시글 레이아웃 변경
 7. 뒤로가기 누를 시 Confirm 창 생성.
 8. 설정 UI 및 컨셉 변경
-9. 댓글 창 UI 
+9. 댓글 창 UI 수정
 10. Semantic 웹 구성
-11. 검색 기능
