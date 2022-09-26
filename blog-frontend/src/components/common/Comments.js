@@ -62,12 +62,10 @@ const SubmitButton = styled.button`
 
 function Comments(props) {
   const [newComment, setNewComment] = useState('');
-  const { user, commentList, status, statusText } = useSelector(
-    ({ user, comment }) => ({
-      user: user.user,
-      ...comment,
-    }),
-  );
+  const { user, commentList, status, statusText } = useSelector(({ user, comment }) => ({
+    user: user.user,
+    ...comment,
+  }));
 
   const dispatch = useDispatch();
 
@@ -88,14 +86,9 @@ function Comments(props) {
     <>
       {user && (
         <div>
-          <CommentArea
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-          />
+          <CommentArea value={newComment} onChange={(e) => setNewComment(e.target.value)} />
           <SubmitButtonArea>
-            <SubmitButton onClick={onClickInsertCommentButton}>
-              등록
-            </SubmitButton>
+            <SubmitButton onClick={onClickInsertCommentButton}>등록</SubmitButton>
           </SubmitButtonArea>
         </div>
       )}
@@ -107,24 +100,18 @@ function Comments(props) {
                 <hr />
                 <div>
                   <span>{comment.user.username}</span>&nbsp;
-                  <span>
-                    {new Date(comment?.createdAt).toLocaleString() ?? ''}
-                  </span>
+                  <span>{new Date(comment?.createdAt).toLocaleString() ?? ''}</span>
                 </div>
+                <br />
                 <div>
                   <span>{comment?.content ?? ''}</span>
                   {user && user._id === comment.user._id ? (
-                    <ActionButton
-                      onClick={() =>
-                        onClickDeleteCommentButton(comment?._id ?? 0)
-                      }
-                    >
-                      삭제
-                    </ActionButton>
+                    <ActionButton onClick={() => onClickDeleteCommentButton(comment?._id ?? 0)}>삭제</ActionButton>
                   ) : (
                     ''
                   )}
                 </div>
+                <br />
               </Comment>
             ))
           ) : (
