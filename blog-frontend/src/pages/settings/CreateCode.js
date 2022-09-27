@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { codeActions } from '../../slices/codeSlice';
-
-import palette from '../../lib/styles/palette';
-import styled from 'styled-components';
 
 function CreateCode({ setShowCreateCode }) {
   const [code, setCode] = useState({});

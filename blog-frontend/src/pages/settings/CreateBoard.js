@@ -2,18 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { boardActions } from '../../slices/boardSlice';
 import { codeActions } from '../../slices/codeSlice';
-import { useNavigate } from 'react-router-dom';
-
-import palette from '../../lib/styles/palette';
-import styled from 'styled-components';
 
 function CreateBoard({ setShowCreateBoard }) {
-  const navigate = useNavigate();
-
-  const { codeList, boardList, boardStatus } = useSelector(({ code, board }) => ({
+  const { codeList } = useSelector(({ code }) => ({
     codeList: code.codeList,
-    boardList: board.boardList,
-    boardStatus: board.boardStatus,
   }));
 
   const [board, setBoard] = useState({});
