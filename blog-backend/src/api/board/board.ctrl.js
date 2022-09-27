@@ -15,6 +15,7 @@ POST /api/board
 */
 export const insert = async (ctx) => {
   const { code, name } = ctx.request.body;
+
   const board = new Board({
     code,
     name,
@@ -47,8 +48,8 @@ export const update = async (ctx) => {
   const { id } = ctx.params;
 
   const schema = Joi.object().keys({
-    value: Joi.string().required(),
-    description: Joi.string().required(),
+    code: Joi.string().required(),
+    name: Joi.string().required(),
   });
   const result = schema.validate(ctx.request.body);
   if (result.error) {
@@ -58,11 +59,9 @@ export const update = async (ctx) => {
   }
 
   try {
-    const board = await board
-      .findByIdAndUpdate(id, ctx.request.body, {
-        new: true,
-      })
-      .exec();
+    const board = await Board.findByIdAndUpdate(id, ctx.request.body, {
+      new: true,
+    }).exec();
 
     if (!board) {
       ctx.status = 404;

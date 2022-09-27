@@ -5,7 +5,7 @@ import Responsive from '../common/Responsive';
 import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
 import { Helmet } from 'react-helmet-async';
-import Comment from '../common/Comments';
+import Comments from '../common/Comments';
 
 const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
@@ -55,7 +55,7 @@ const PostViewer = ({ post, error, actionButtons }) => {
       {actionButtons}
       <PostContent dangerouslySetInnerHTML={{ __html: body }} />
       <div>
-        <Comment postId={_id} />
+        <Comments postId={_id} />
       </div>
     </PostViewerBlock>
   );

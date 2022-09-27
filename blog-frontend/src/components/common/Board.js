@@ -11,7 +11,7 @@ function Board() {
   }, [dispatch]);
   return (
     <>
-      {boardStatus === 200 ? (
+      {boardList && (
         <div>
           <ul>
             <li key={0}>
@@ -19,27 +19,14 @@ function Board() {
                 <span>Main</span>
               </Link>
             </li>
-            {boardList.length > 0 ? (
-              boardList.map((board) => (
-                <li key={board?._id}>
-                  <Link to={{ pathname: `/board/${board?.name}` }}>
-                    <span>{board?.name}</span>
-                  </Link>
-                </li>
-              ))
-            ) : (
-              <div> 게시판이 없습니다. </div>
-            )}
+            {boardList.map((board) => (
+              <li key={board?._id}>
+                <Link to={{ pathname: `/board/${board?.name}` }}>
+                  <span>{board?.name}</span>
+                </Link>
+              </li>
+            ))}
           </ul>
-        </div>
-      ) : (
-        <div>
-          <div>
-            <span>{boardStatus}</span>
-          </div>
-          <div>
-            <span>{boardStatusText}</span>
-          </div>
         </div>
       )}
     </>

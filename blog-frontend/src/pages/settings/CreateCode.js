@@ -33,19 +33,11 @@ function CreateCode({ setShowCreateCode }) {
       <div>
         <div>
           <span>코드 설명:</span>
-          <input
-            name="description"
-            onChange={onChangeCode}
-            value={code?.description ?? ''}
-          />
+          <input name="description" onChange={onChangeCode} value={code?.description ?? ''} />
         </div>
         <div>
           <span>코드 설정값:</span>
-          <input
-            name="value"
-            onChange={onChangeCode}
-            value={code?.value ?? ''}
-          />
+          <input name="value" onChange={onChangeCode} value={code?.value ?? ''} />
         </div>
         <button onClick={onSubmit}>등록</button>
       </div>

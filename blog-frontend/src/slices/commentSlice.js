@@ -3,31 +3,33 @@ import { createSlice } from '@reduxjs/toolkit';
 const name = 'comment';
 
 const initialState = {
-  commentList: [],
-  status: 0,
-  statusText: 'Loading',
+  comments: [],
+  commentError: null,
 };
 
 const reducers = {
-  getCommentList: (state, action) => {},
-  getCommentListSuccess: (state, action) => {
-    state.commentList = action.payload?.data ?? [];
-    state.status = action.payload?.status;
-    state.statusText = action.payload?.statusText ?? 'Success';
+  getComments: () => {},
+  getCommentsSuccess: (state, { payload: comments }) => {
+    state.comments = comments;
   },
-  getCommentListFailure: (state, action) => {
-    state.commentList = initialState.commentList;
-    state.status = action.payload?.status ?? 500;
-    state.statusText = action.payload?.statusText ?? 'Network Error';
+  getCommentsFailure: (state, { payload: commentError }) => {
+    state.commentError = commentError;
   },
 
-  insertComment: (state, action) => {},
-  insertCommentSuccess: (state, action) => {},
-  insertCommentFailure: (state, action) => {},
-
-  deleteComment: (state, action) => {},
-  deleteCommentSuccess: (state, action) => {},
-  deleteCommentFailure: (state, action) => {},
+  insertComment: () => {},
+  insertCommentSuccess: (state, { payload: comment }) => {
+    state.comments = state.comments.concat(comment);
+  },
+  insertCommentFailure: (state, { payload: commentError }) => {
+    state.commentError = commentError;
+  },
+  deleteComment: () => {},
+  deleteCommentSuccess: (state, { payload: id }) => {
+    state.comments = state.comments.filter((comment) => comment._id !== id);
+  },
+  deleteCommentFailure: (state, { payload: commentError }) => {
+    state.commentError = commentError;
+  },
 };
 
 const commentSlice = createSlice({

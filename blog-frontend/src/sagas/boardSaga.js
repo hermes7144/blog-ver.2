@@ -11,8 +11,8 @@ function apiPostBoard(requestBody) {
   return client.post(`/api/board`, requestBody);
 }
 
-function apiPutBoard({ _id, value, description }) {
-  return client.put(`/api/board/${_id}`, { value, description });
+function apiPutBoard({ _id, code, name }) {
+  return client.put(`/api/board/${_id}`, { code, name });
 }
 
 function apiDeleteBoard(_id) {

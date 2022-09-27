@@ -16,7 +16,7 @@ const reducers = {
     state.boardStatusText = action.payload?.statusText ?? 'Success';
   },
   getBoardListFailure: (state, action) => {
-    state.boardList = initialState.commentList;
+    state.boardList = [];
     state.boardStatus = action.payload?.status ?? 500;
     state.boardStatusText = action.payload?.statusText ?? 'Network Error';
   },

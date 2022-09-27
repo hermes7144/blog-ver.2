@@ -25,14 +25,14 @@ export const read = async (ctx) => {
 
 export const write = async (ctx) => {
   const { content, postId } = ctx.request.body;
-  const post = new Comment({
+  const comment = new Comment({
     content,
     postId,
     user: ctx.state.user,
   });
   try {
-    await post.save();
-    ctx.body = post;
+    await comment.save();
+    ctx.body = comment;
   } catch (e) {
     ctx.throw(500, e);
   }
@@ -45,7 +45,7 @@ export const remove = async (ctx) => {
   const { id } = ctx.params;
   try {
     await Comment.findByIdAndRemove(id).exec();
-    ctx.status = 204; // No Content
+    ctx.body = id;
   } catch (e) {
     ctx.throw(500, e);
   }

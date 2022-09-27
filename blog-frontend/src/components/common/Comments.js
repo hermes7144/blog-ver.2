@@ -62,7 +62,7 @@ const SubmitButton = styled.button`
 
 function Comments(props) {
   const [newComment, setNewComment] = useState('');
-  const { user, commentList, status, statusText } = useSelector(({ user, comment }) => ({
+  const { user, comments, status, statusText } = useSelector(({ user, comment }) => ({
     user: user.user,
     ...comment,
   }));
@@ -70,7 +70,8 @@ function Comments(props) {
   const dispatch = useDispatch();
 
   function onClickInsertCommentButton() {
-    dispatch(commentActions.insertComment(newComment));
+    dispatch(commentActions.insertComment({ content: newComment, postId: props.postId }));
+
     setNewComment('');
   }
 
@@ -79,7 +80,7 @@ function Comments(props) {
     dispatch(commentActions.deleteComment(commentId));
   }
   useEffect(() => {
-    dispatch(commentActions.getCommentList(props.postId));
+    dispatch(commentActions.getComments(props.postId));
   }, [dispatch, props.postId]);
 
   return (
@@ -93,9 +94,9 @@ function Comments(props) {
         </div>
       )}
       <div>
-        {status === 200 ? (
-          commentList.length > 0 ? (
-            commentList.map((comment, index) => (
+        {comments ? (
+          comments.length > 0 ? (
+            comments.map((comment, index) => (
               <Comment key={comment?._id ?? index}>
                 <hr />
                 <div>
