@@ -15,7 +15,7 @@ const ActionButton = styled.button`
   cursor: pointer;
   &:hover {
     background: ${palette.gray[1]};
-    color: ${palette.cyan[7]};
+    color: ${palette.orange[7]};
   }
   & + & {
     margin-left: 0.25rem;
@@ -62,8 +62,9 @@ const SubmitButton = styled.button`
 
 function Comments(props) {
   const [newComment, setNewComment] = useState('');
-  const { user, comments, status, statusText } = useSelector(({ user, comment }) => ({
+  const { user, comments, loading } = useSelector(({ user, loading, comment }) => ({
     user: user.user,
+    loading: loading['comment/getComments'],
     ...comment,
   }));
 
@@ -94,8 +95,9 @@ function Comments(props) {
         </div>
       )}
       <div>
-        {comments ? (
-          comments.length > 0 ? (
+        {!loading &&
+          comments &&
+          (comments.length > 0 ? (
             comments.map((comment, index) => (
               <Comment key={comment?._id ?? index}>
                 <hr />
@@ -117,17 +119,7 @@ function Comments(props) {
             ))
           ) : (
             <div></div>
-          )
-        ) : (
-          <div>
-            <div>
-              <span>{status}</span>
-            </div>
-            <div>
-              <span>{statusText}</span>
-            </div>
-          </div>
-        )}
+          ))}
       </div>
     </>
   );

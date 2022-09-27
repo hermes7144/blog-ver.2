@@ -12,10 +12,10 @@ const PostViewerContainer = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { post, error, user } = useSelector(({ post, user }) => ({
+  const { post, error, loading, user } = useSelector(({ post, loading, user }) => ({
     post: post.post,
     error: post.error,
-
+    loading: loading['post/readPost'],
     user: user.user,
   }));
 
@@ -47,6 +47,7 @@ const PostViewerContainer = () => {
     <PostViewer
       post={post}
       error={error}
+      loading={loading}
       user={user}
       actionButtons={ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />}
     />

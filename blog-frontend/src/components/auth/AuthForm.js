@@ -75,13 +75,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
     <AuthFormBlock>
       <h3>{text}</h3>
       <form onSubmit={onSubmit}>
-        <StyledInput
-          autoComplete="username"
-          name="username"
-          placeholder="아이디"
-          onChange={onChange}
-          value={form.username}
-        />
+        <StyledInput autoComplete="username" name="username" placeholder="아이디" onChange={onChange} value={form.username} />
         <StyledInput
           autoComplete="new-password"
           name="password"
@@ -101,17 +95,11 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
           />
         )}
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <ButtonWithMarginTop cyan fullWidth>
+        <ButtonWithMarginTop orange fullWidth>
           {text}
         </ButtonWithMarginTop>
       </form>
-      <Footer>
-        {type === 'login' ? (
-          <Link to="/register">회원가입</Link>
-        ) : (
-          <Link to="/login">로그인</Link>
-        )}
-      </Footer>
+      <Footer>{type === 'login' ? <Link to="/register">회원가입</Link> : <Link to="/login">로그인</Link>}</Footer>
     </AuthFormBlock>
   );
 };

@@ -7,6 +7,7 @@ import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
 import { Link } from 'react-router-dom';
 import PaginationContainer from '../../containers/posts/PaginationContainer';
+
 const PostListBlock = styled(Responsive)`
   margin-top: 3rem;
 `;
@@ -56,7 +57,7 @@ const PostItem = ({ post }) => {
   );
 };
 
-const PostList = ({ posts, error, showWriteButton }) => {
+const PostList = ({ posts, loading, error, showWriteButton }) => {
   // 에러 발생 시
   if (error) {
     return <PostListBlock>에러가 발생했습니다.</PostListBlock>;
@@ -66,13 +67,13 @@ const PostList = ({ posts, error, showWriteButton }) => {
     <PostListBlock>
       <WritePostButtonWrapper>
         {showWriteButton && (
-          <Button cyan to="/write">
+          <Button orange to="/write">
             새 글 작성하기
           </Button>
         )}
       </WritePostButtonWrapper>
       {/*  로딩 중 아니고, 포스트 배열이 존재할 때만 보여줌 */}
-      {posts && (
+      {!loading && posts && (
         <div>
           {posts.map((post) => (
             <PostItem post={post} key={post._id} />

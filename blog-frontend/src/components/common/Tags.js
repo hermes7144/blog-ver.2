@@ -7,11 +7,11 @@ const TagsBlock = styled.div`
   margin-top: 0.5rem;
   .tag {
     display: inline-block;
-    color: ${palette.cyan[7]};
+    color: ${palette.orange[6]};
     text-decoration: none;
     margin-right: 0.5rem;
     &:hover {
-      color: ${palette.cyan[6]};
+      color: ${palette.orange[5]};
     }
   }
 `;
@@ -19,7 +19,7 @@ const TagsBlock = styled.div`
 const Tags = ({ tags }) => {
   return (
     <TagsBlock>
-      {tags.map(tag => (
+      {tags.map((tag) => (
         <Link className="tag" to={`/?tag=${tag}`} key={tag}>
           #{tag}
         </Link>

@@ -4,7 +4,6 @@ import EditorContainer from '../containers/write/EditorContainer';
 import TagBoxContainer from '../containers/write/TagBoxContainer';
 import WriteActionButtonsContainer from '../containers/write/WriteActionButtonsContainer';
 import CategorySelectBox from '../components/common/CategorySelectBox';
-import SideBar from '../components/common/SideBar';
 
 import { Helmet } from 'react-helmet-async';
 import HeaderContainer from '../containers/common/HeaderContainer';
@@ -17,7 +16,6 @@ const WritePage = () => {
       </Helmet>
       <HeaderContainer />
 
-      <SideBar />
       <Responsive>
         <EditorContainer />
         <CategorySelectBox />

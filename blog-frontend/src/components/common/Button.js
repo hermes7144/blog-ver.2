@@ -28,11 +28,11 @@ const buttonStyle = css`
     `}
 
   ${(props) =>
-    props.cyan &&
+    props.orange &&
     css`
-      background: ${palette.cyan[5]};
+      background: ${palette.orange[5]};
       &:hover {
-        background: ${palette.cyan[4]};
+        background: ${palette.orange[4]};
       }
     `}
 
@@ -61,11 +61,7 @@ const StyledLink = styled(Link)`
 `;
 
 const Button = (props) => {
-  return props.to ? (
-    <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
-  ) : (
-    <StyledButton {...props} />
-  );
+  return props.to ? <StyledLink {...props} orange={props.orange ? 1 : 0} /> : <StyledButton {...props} />;
 };
 
 export default Button;

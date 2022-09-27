@@ -21,7 +21,7 @@ const ActionButton = styled.button`
   cursor: pointer;
   &:hover {
     background: ${palette.gray[1]};
-    color: ${palette.cyan[7]};
+    color: ${palette.orange[7]};
   }
   & + & {
     margin-left: 0.25rem;
@@ -47,11 +47,7 @@ const PostActionButtons = ({ onEdit, onRemove }) => {
         <ActionButton onClick={onEdit}>수정</ActionButton>
         <ActionButton onClick={onRemoveClick}>삭제</ActionButton>
       </PostActionButtonsBlock>
-      <AskRemoveModal
-        visible={modal}
-        onConfirm={onConfirm}
-        onCancel={onCancel}
-      />
+      <AskRemoveModal visible={modal} onConfirm={onConfirm} onCancel={onCancel} />
     </>
   );
 };
