@@ -20,7 +20,7 @@ function CreateBoard({ setShowCreateBoard }) {
 
   const onSubmit = () => {
     if (board?.name) {
-      dispatch(boardActions.postBoard(board));
+      dispatch(boardActions.postBoard({ board, setShowCreateBoard }));
     } else {
       alert('게시판 이름은 필수값입니다.');
     }

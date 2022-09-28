@@ -20,11 +20,13 @@ const sanitizeOption = {
     'blockquote',
     'a',
     'img',
+    'pre',
   ],
   allowedAttributes: {
     a: ['href', 'name', 'target'],
     img: ['src'],
     li: ['class'],
+    pre: ['class'],
   },
   allowedSchemes: ['data', 'http'],
 };

@@ -38,6 +38,7 @@ function* asyncGetBoardList() {
 
 function* asyncPostBoard(action) {
   try {
+    console.log(action.payload);
     const response = yield call(apiPostBoard, {
       code: action.payload.board.code,
       name: action.payload.board.name,
@@ -105,6 +106,7 @@ function* watchPostBoard() {
   while (true) {
     const action = yield take(boardActions.postBoard);
 
+    console.log(action);
     yield call(asyncPostBoard, action);
   }
 }
