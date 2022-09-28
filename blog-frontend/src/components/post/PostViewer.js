@@ -6,6 +6,8 @@ import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
 import { Helmet } from 'react-helmet-async';
 import Comments from '../common/Comments';
+import { marked } from 'marked';
+import hljs from 'highlight.js';
 
 const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
@@ -24,7 +26,15 @@ const PostHead = styled.div`
 const PostContent = styled.div`
   font-size: 1.3125rem;
   color: ${palette.gray[8]};
+  padding: 2rem;
 `;
+
+marked.setOptions({
+  langPrefix: 'hljs language-',
+  highlight: function (code) {
+    return hljs.highlightAuto(code, ['html', 'javascript']).value;
+  },
+});
 
 const PostViewer = ({ post, error, loading, actionButtons }) => {
   // 에러 발생 시
@@ -41,6 +51,13 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
   }
 
   const { _id, title, body, user, publishedDate, tags } = post;
+
+  let newBody = body
+    .replaceAll('<pre>', `\r\n\r\n\`\`\`javascript\r\n`)
+    .replaceAll('</pre>', `\r\n\`\`\`\r\n`)
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>');
+
   return (
     <PostViewerBlock>
       <Helmet>
@@ -52,7 +69,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
         <Tags tags={tags} />
       </PostHead>
       {actionButtons}
-      <PostContent dangerouslySetInnerHTML={{ __html: body }} />
+      <PostContent dangerouslySetInnerHTML={{ __html: marked(newBody) }} />
       <div>
         <Comments postId={_id} />
       </div>

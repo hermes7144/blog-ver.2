@@ -26,7 +26,6 @@ const sanitizeOption = {
     a: ['href', 'name', 'target'],
     img: ['src'],
     li: ['class'],
-    pre: ['class'],
   },
   allowedSchemes: ['data', 'http'],
 };
@@ -170,7 +169,6 @@ export const remove = async (ctx) => {
 
 export const update = async (ctx) => {
   const { id } = ctx.params;
-
   const schema = Joi.object().keys({
     title: Joi.string().required(),
     body: Joi.string().required(),

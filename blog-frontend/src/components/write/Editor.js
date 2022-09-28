@@ -1,8 +1,49 @@
-import React, { useRef, useEffect } from 'react';
-import Quill from 'quill';
-import 'quill/dist/quill.snow.css';
+import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
+import hljs from 'highlight.js';
+import 'react-quill/dist/quill.core.css';
+import 'react-quill/dist/quill.bubble.css';
+
+import ReactQuill, { Quill } from 'react-quill';
+import ImageResize from 'quill-image-resize';
+Quill.register('modules/ImageResize', ImageResize);
+
+hljs.configure({
+  languages: ['javascript', 'ruby', 'python', 'rust'],
+});
+
+const modules = {
+  syntax: {
+    highlight: (text) => hljs.highlightAuto(text).value,
+  },
+  toolbar: [['bold', 'italic', 'underline', 'blockquote'], ['link', 'image', 'video'], ['clean'], ['code-block']],
+  clipboard: {
+    matchVisual: false,
+  },
+  ImageResize: {
+    parchment: Quill.import('parchment'),
+  },
+};
+
+const formats = [
+  'header',
+  'font',
+  'size',
+  'bold',
+  'italic',
+  'underline',
+  'strike',
+  'blockquote',
+  'list',
+  'bullet',
+  'indent',
+  'link',
+  'image',
+  'video',
+  'code-block',
+];
+
 const EditorBlock = styled.div`
   /* 페이지 위 아래 여백 지정 */
   padding-top: 5rem;
@@ -20,7 +61,6 @@ const TitleInput = styled.input`
 const QuillWrapper = styled.div`
   /* 최소 크기 지정 및 padding 제거 */
   .ql-editor {
-    padding: 0;
     min-height: 320px;
     font-size: 1.125rem;
     line-height: 1.5;
@@ -31,47 +71,25 @@ const QuillWrapper = styled.div`
 `;
 
 const Editor = ({ title, body, onChangeField }) => {
-  const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
-  const quillInstance = useRef(null); // Quill 인스턴스를 설정
-
-  useEffect(() => {
-    quillInstance.current = new Quill(quillElement.current, {
-      theme: 'snow',
-      placeholder: '내용을 작성하세요...',
-      modules: {
-        toolbar: [
-          [{ header: '1' }, { header: '2' }],
-          ['bold', 'italic', 'underline', 'strike'],
-          [{ list: 'ordered' }, { list: 'bullet' }],
-          ['blockquote', 'code-block', 'link', 'image'],
-        ],
-      },
-    });
-
-    const quill = quillInstance.current;
-    quill.on('text-change', (delta, oldDelta, source) => {
-      if (source === 'user') {
-        onChangeField({ key: 'body', value: quill.root.innerHTML });
-      }
-    });
-  }, [onChangeField]);
-
-  const mounted = useRef(false);
-  useEffect(() => {
-    if (mounted.current) return;
-    mounted.current = true;
-    quillInstance.current.root.innerHTML = body;
-  }, [body]);
-
   const onChangeTitle = (e) => {
     onChangeField({ key: 'title', value: e.target.value });
+  };
+  const onChangeBody = (e) => {
+    onChangeField({ key: 'body', value: e });
   };
 
   return (
     <EditorBlock>
       <TitleInput placeholder="제목을 입력하세요" onChange={onChangeTitle} value={title} />
       <QuillWrapper>
-        <div ref={quillElement} />
+        <ReactQuill
+          placeholder=" 내용을 작성하세요..."
+          value={body}
+          onChange={onChangeBody}
+          theme="bubble"
+          modules={modules}
+          formats={formats}
+        />
       </QuillWrapper>
     </EditorBlock>
   );

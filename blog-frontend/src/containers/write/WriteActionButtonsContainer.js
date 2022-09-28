@@ -18,6 +18,10 @@ const WriteActionButtonsContainer = () => {
   }));
   // 포스트 등록
   const onPublish = () => {
+    if (!title || !body || !board) {
+      alert('값을 채워주세요!');
+      return;
+    }
     if (originalPostId) {
       dispatch(writeActions.updatePost({ title, body, board, tags, id: originalPostId }));
       return;

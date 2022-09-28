@@ -46,7 +46,6 @@ function* asyncPostCode(action) {
     if (response.status === 201) {
       yield put(codeActions.postCodeSuccess(response));
       alert('등록되었습니다.');
-      console.log(action.payload);
       yield call(action.payload?.setShowCreateCode, false);
       yield put(codeActions.getCodeList());
     } else {
