@@ -53,8 +53,8 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
   const { _id, title, body, user, publishedDate, tags } = post;
 
   let newBody = body
-    .replaceAll('<pre>', `\r\n\r\n\`\`\`javascript\r\n`)
-    .replaceAll('</pre>', `\r\n\`\`\`\r\n`)
+    .replaceAll('<pre>', '\r\n\r\n```javascript\r\n')
+    .replaceAll('</pre>', '\r\n```\r\n')
     .replaceAll('&lt;', '<')
     .replaceAll('&gt;', '>');
 
