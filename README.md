@@ -26,4 +26,5 @@ If you have problem, feel free to ask me ^^
 9. ~~댓글 창 UI 수정~~
 10. Semantic 웹 구성
 11. 검색기능
-12. 글의 목차 오른쪽에 정렬
+12. 글 목차 오른쪽에 생성
+13. 웹 성능 최적화
