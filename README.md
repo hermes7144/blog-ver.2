@@ -8,6 +8,10 @@ To use this application,
 
 If you have problem, feel free to ask me ^^
 
+Blog ver.1
+![image](https://user-images.githubusercontent.com/46180611/193032637-43e5bd95-fed3-4ef7-af22-93c3a8e16774.png)
+
+
 한 것
 1. 글쓰기에서 카테고리 등록 가능하도록 구현
 2. 카테고리별 조회 되도록 구현
@@ -29,3 +33,4 @@ If you have problem, feel free to ask me ^^
 12. 글 목차 오른쪽에 생성
 13. 웹 성능 최적화
 14. Toast UI 기반으로 UI 구성
+15. 서버 속도가 오락가락 하는 이유 찾기
