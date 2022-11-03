@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
     "highlight.js": "^11.6.0",
+    "http-proxy-middleware": "^2.0.6",
     "immer": "^9.0.15",
     "marked": "^4.1.0",
     "qs": "^6.11.0",
@@ -55,7 +56,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:4000/",
-  "proxy-dev": "http://59.180.40.199:4000/"
+  }
 }
