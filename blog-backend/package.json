@@ -25,7 +25,7 @@
     "nodemon": "^2.0.19"
   },
   "scripts": {
-    "start": "node src/main.js",
+    "start": "node src/index.js",
     "backend": "nodemon server/index.js",
     "start:dev": "nodemon --watch src/ -r esm src/index.js"
   }
