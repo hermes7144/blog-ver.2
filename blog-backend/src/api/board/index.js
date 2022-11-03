@@ -1,6 +1,6 @@
 import Router from 'koa-router';
 import * as boardctrl from './board.ctrl.js';
-import checkedLoggedIn from '../../lib/checkLoggedIn';
+import checkedLoggedIn from '../../lib/checkLoggedIn.js';
 
 const board = new Router();
 

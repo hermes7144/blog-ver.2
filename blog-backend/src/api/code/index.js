@@ -1,6 +1,6 @@
 import Router from 'koa-router';
 import * as codectrl from './code.ctrl.js';
-import checkedLoggedIn from '../../lib/checkLoggedIn';
+import checkedLoggedIn from '../../lib/checkLoggedIn.js';
 
 const code = new Router();
 

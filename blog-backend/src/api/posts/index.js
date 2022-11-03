@@ -1,6 +1,6 @@
 import Router from 'koa-router';
-import * as postsCtrl from './posts.ctrl';
-import checkedLoggedIn from '../../lib/checkLoggedIn';
+import * as postsCtrl from './posts.ctrl.js';
+import checkedLoggedIn from '../../lib/checkLoggedIn.js';
 
 const posts = new Router();
 

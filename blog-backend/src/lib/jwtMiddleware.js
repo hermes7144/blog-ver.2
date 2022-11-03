@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/user';
+import User from '../models/user.js';
 
 const jwtMiddleware = async (ctx, next) => {
   const token = ctx.cookies.get('access_token');

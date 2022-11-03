@@ -1,4 +1,4 @@
-import Comment from '../../models/comment';
+import Comment from '../../models/comment.js';
 
 /* 코멘트 조회
 GET /api/comment/:id

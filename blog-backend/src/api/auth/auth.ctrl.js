@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import User from '../../models/user';
+import User from '../../models/user.js';
 
 export const register = async (ctx) => {
   const schema = Joi.object().keys({

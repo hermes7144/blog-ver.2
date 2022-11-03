@@ -1,9 +1,9 @@
 import Router from 'koa-router';
-import posts from './posts';
-import auth from './auth';
-import comment from './comment';
-import code from './code';
-import board from './board';
+import posts from './posts/index.js';
+import auth from './auth/index.js';
+import comment from './comment/index.js';
+import code from './code/index.js';
+import board from './board/index.js';
 
 const api = new Router();
 

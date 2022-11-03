@@ -1,4 +1,4 @@
-import Code from '../../models/code';
+import Code from '../../models/code.js';
 import Joi from 'joi';
 
 /* 코드 읽기

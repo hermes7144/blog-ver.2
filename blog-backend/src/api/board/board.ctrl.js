@@ -1,5 +1,5 @@
-import Board from '../../models/board';
-import Post from '../../models/post';
+import Board from '../../models/board.js';
+import Post from '../../models/post.js';
 import Joi from 'joi';
 import sanitizeHtml from 'sanitize-html';
 /* 코드 읽기

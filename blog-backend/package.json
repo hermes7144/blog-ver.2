@@ -1,6 +1,7 @@
 {
   "name": "blog-backend",
   "version": "1.0.0",
+  "type": "module",
   "main": "main.js",
   "license": "MIT",
   "dependencies": {
@@ -24,7 +25,7 @@
     "nodemon": "^2.0.19"
   },
   "scripts": {
-    "start": "node src -r esm src",
+    "start": "node src/main.js",
     "backend": "nodemon server/index.js",
     "start:dev": "nodemon --watch src/ -r esm src/index.js"
   }
